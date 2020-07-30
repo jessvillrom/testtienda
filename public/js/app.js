@@ -1940,10 +1940,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      registros: [],
+      // registros:[],
       registro: {
         email: '',
         name: '',
@@ -1953,33 +1955,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     registrar: function registrar() {
-      var _this = this;
-
-      // console.log(this.registro.email,this.registro.name,this.registro.password);
-      var params = {
-        email: this.registro.email,
-        name: this.registro.name,
-        password: this.registro.password
-      }; // console.log (params);
-      // this.registro.email
-
-      axios.post('/register', params).then(function (response) {
-        _this.registros.push(response.data); // console.log(response)
-
+      axios.post('api/regitrarse', this.registro).then(function (response) {
+        console.log('deberiafuncionar');
       })["catch"](function (error) {
+        console.log('Error y no se por que ');
         console.log(error);
       });
     }
-  } //  mounted() {
-  //      axios.get('/register')
-  //         .then(response=>{
-  //             console.log(response)
-  //         })
-  //         .catch(error=>{
-  //             console.log(error);
-  //         });
-  //     }
-
+  }
 });
 
 /***/ }),
@@ -37590,7 +37573,7 @@ var render = function() {
       [
         _c("div", { staticClass: "form-group" }, [
           _c("label", { attrs: { for: "exampleInputEmail1" } }, [
-            _vm._v("Email address")
+            _vm._v("Email ")
           ]),
           _vm._v(" "),
           _c("input", {
@@ -37692,7 +37675,7 @@ var render = function() {
         _c(
           "button",
           { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-          [_vm._v("Submit")]
+          [_vm._v("Registrar")]
         )
       ]
     )
@@ -52942,7 +52925,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
   routes: [{
     path: '/',
     component: {
-      template: '<example-component></example-component>'
+      template: '<div>Inicio</div>'
     }
   }, {
     path: '/login',

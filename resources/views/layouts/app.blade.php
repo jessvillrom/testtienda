@@ -85,7 +85,7 @@
         </nav>
 
         <main class="py-4">
-            <router-link to='/login'>Ingresar</router-link>
+       
            
         <router-view></router-view>
             @yield('content')

@@ -8,19 +8,14 @@ use App\User;
 class UserController extends Controller
 {
    
+
+
+    
     public  function regitrousuario(Request $request){
+       
 
-        
 
-        $json=$request->input('json','null');
-        $parametro=json_decode($json);
-        $parametro_array=json_decode($json,true);
-
-        if(!empty($parametro)&& !empty($parametro_array)){
-
-            $parametro_array= array_map('trim',$parametro_array);
-
-            $validacion=\Validator::make($parametro_array,[
+            $validacion=\Validator::make($request->all(),[
 
                 'name'=>'required',
                 'email'=>'required|email|unique:users',
@@ -41,38 +36,30 @@ class UserController extends Controller
 
             else{
 
-                $pwd=hash('sha256',$parametro->password);
+                
+                $pwd=hash('sha256',$request->password);
 
                 $usuario=new User();
-                $usuario->name=$parametro_array['name'];
-                $usuario->email=$parametro_array['email'];
+                $usuario->name=$request->name;
+                $usuario->email=$request->email;
                 $usuario->password=$pwd;
             
                 $usuario->save();
-    
+
                 $data=array(
                     'status'=>'success',
                     'code'=>200,
                     'message'=>'El usuario  ha creado con satisfación',
                     
                 );
-
+              
             }
 
 
-        }else {
-            $data=array(
-                'status'=>'error',
-                'code'=>404,
-                'message'=>'Los datos no son correctos',
-                
-            );
     
+        
     
-        }
-    
-            return response()->json($data,$data['code']);
-
+            return response()->json($data);
 
 
     }

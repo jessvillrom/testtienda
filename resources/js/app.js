@@ -40,7 +40,7 @@ let router = new Router({
     routes:[
         {path:'/',
         component: {
-            template:'<example-component></example-component>'
+            template:'<div>Inicio</div>'
         }
     },
         {path:'/login',
